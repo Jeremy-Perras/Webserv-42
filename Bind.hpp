@@ -1,23 +1,24 @@
 #ifndef BIND_H
 # define BIND_H
-# include"Sicket.hpp"
+# include"Socket.hpp"
+# include <sys/types.h>
+# include <sys/socket.h>
 
-class Bind : public Socket
+
+class Binding : public Socket
 {
     public:
-        Bind(void);
-        Bind& operator=(Bind const &rhs);
-        Bind(Bind const &src)
-        ~Bind(void);
-        int connect_network(int sock, struct sockadrr_in address);
-
-
-
+        Binding(int domain, int type, int protocol, int port , u_long ip);
+        Binding& operator=(Binding const &rhs);
+        Binding(Binding const &src);
+        ~Binding(void);
+        int connect_network(int sock);
 
     private:
+        // struct sockaddr_in _address;
 
 
 
-}
+};
 
 #endif

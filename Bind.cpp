@@ -1,6 +1,30 @@
 #include "Bind.hpp"
 
-int Bind::connect_network(int sock, struct sockadrr_in address)
+
+Binding::Binding(int domain, int type, int protocol, int port , u_long ip) : Socket(domain, type, protocol, port , ip)
 {
-    return(bind(sock,(struct sockaddr *) &address), sizeof)
+    return;
+}
+
+Binding & Binding::operator=(Binding const &rhs)
+{
+    if(this == &rhs)
+        return(*this);
+    return(*this);
+}
+
+Binding::Binding(Binding const &src)
+{
+    *this = src;
+    return ;
+}
+
+int Binding::connect_network(int sock)
+{
+    return(bind(sock,(struct sockaddr *) &this->_address, sizeof(this->_address)));
+}
+
+Binding::~Binding(void)
+{
+    return ;
 }

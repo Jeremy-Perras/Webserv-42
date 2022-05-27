@@ -1,6 +1,6 @@
-NAME = Bureaucrat
+NAME = webserv
 
-SRCS = main.cpp Socket.cpp
+SRCS = main.cpp Socket.cpp Listen.cpp Bind.cpp Message.cpp
 
 INCLUDES = -I.
 
@@ -8,7 +8,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 CC = g++
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -g -Wextra -Werror #-std=c++98
 
 .c.o:
 		${CC} ${FLAGS} -I. -c $< -o ${<:.cpp=.o}
@@ -21,7 +21,7 @@ all : $(NAME)
 
 
 test :
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS)
+	$(CC) -g $(FLAGS) -o $(NAME) $(SRCS)
 
 clean :
 	rm -rf $(OBJS)
