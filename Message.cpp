@@ -21,17 +21,37 @@ Msg::Msg(Msg const &src)
 void Msg::Recv(int sock)
 {
     int bytes_recv;
-    char buf[250];
-     bytes_recv = recv(sock, buf, 250, 0);
+    char buf[500];
+    int i;
 
+    bytes_recv = recv(sock, buf, 500, 0);
+    read(sock, buf, 1);
+    char buffer[30000] = {0};
+    read(sock, buffer, 30000);
+    printf("%s\n",buffer );
+
+    // while(buf[i++])
+    // {
+    //     std::cout << buf[i];
+    //     //i++;
+    // }
 }
 
 void Msg::Send(int sock)
 {
-    char msg[250] = "Beej était là!";
+    std::ostringstream oss;
+    oss << "HTTP/1.1 " << "errorCode"<< " OK\r\n";
+	oss << "Cache-Control: no-cache, private\r\n";
+	oss << "Content-Type: text/html\r\n";
+	oss << "Content-Length: " << "content.size()" << "\r\n";
+	oss << "\r\n";
+    oss << "<h1> Hello </h1>";
+    std::string output = oss.str();
+	int size = output.size() + 1;
+    char msg[250] = "Beej etait la! ";
     int len, bytes_sent;
     len = strlen(msg);
-    bytes_sent = send(sock, msg, len, 0);
+    bytes_sent = send(sock, output.c_str(), size, 0);
 }
 
 

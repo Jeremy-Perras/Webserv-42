@@ -16,6 +16,7 @@ class Listening
         ~Listening(void);
         void listenin(int sock, int backlog);
         void accept(int sock);
+        int getNewfd(void);
 
     private:
         int _listen;

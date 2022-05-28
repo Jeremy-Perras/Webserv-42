@@ -28,6 +28,11 @@ void Listening::accept(int sock)
     return ;
 }
 
+int Listening::getNewfd(void)
+{
+    return(this->_new_fd);
+}
+
 Listening::Listening(Listening const &src)
 {
     *this = src;
