@@ -10,7 +10,7 @@ class Socket
 {
     public:
         Socket(void);
-        Socket(int domain, int type, int protocol, int port, u_long ip);
+        Socket(int domain, int type, int protocol, int port,char *ip);
         Socket & operator=(Socket const &rhs);
         Socket(Socket const &src);
         ~Socket(void);

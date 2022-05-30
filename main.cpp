@@ -9,22 +9,24 @@ int main(void)
 {
     Listening listen;
     Msg Message;
-    Binding bind(AF_INET, SOCK_STREAM, 0, 8080, 0);
+
+    std::string ip = "127.0.0.1";
+    Binding bind(AF_INET, SOCK_STREAM, 0, 8080, (char *) ip.c_str());
     std::ostringstream oss;
 
     bind.connect_network(bind.getFd());
     listen.listenin(bind.getFd(), 5);
     listen.accept(bind.getFd());
+    close(bind.getFd());
     Message.Send(listen.getNewfd());
     while(1)
     {
-
         usleep(50);
+        Message.Recv(listen.getNewfd());
         //write(bind.getFd(), "hello", strlen("hello"));
         //write(listen.getNewfd(), "hello", strlen("hello"));
 
     }
-    Message.Recv(listen.getNewfd());
     close(listen.getNewfd());
 
     return (0);

@@ -8,7 +8,7 @@
 class Binding : public Socket
 {
     public:
-        Binding(int domain, int type, int protocol, int port , u_long ip);
+        Binding(int domain, int type, int protocol, int port , char *ip);
         Binding& operator=(Binding const &rhs);
         Binding(Binding const &src);
         ~Binding(void);

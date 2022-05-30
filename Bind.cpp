@@ -1,7 +1,7 @@
 #include "Bind.hpp"
 
 
-Binding::Binding(int domain, int type, int protocol, int port , u_long ip) : Socket(domain, type, protocol, port , ip)
+Binding::Binding(int domain, int type, int protocol, int port , char *ip) : Socket(domain, type, protocol, port , ip)
 {
     return;
 }

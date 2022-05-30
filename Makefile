@@ -8,7 +8,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 CC = g++
 
-FLAGS = -Wall -g -Wextra -Werror #-std=c++98
+FLAGS = -Wall -g -Wextra -Werror -std=c++98
 
 .c.o:
 		${CC} ${FLAGS} -I. -c $< -o ${<:.cpp=.o}
