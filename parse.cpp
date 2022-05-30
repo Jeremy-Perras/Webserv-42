@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _parse.cpp                                         :+:      :+:    :+:   */
+/*   parse.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:47:10 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/05/30 16:50:37 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/30 17:10:42 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_main.hpp"
-#include "_Servers.hpp"
+#include "parse.hpp"
+#include "Servers.hpp"
 using namespace std;
 
 static bool getExtension(const string &conf)

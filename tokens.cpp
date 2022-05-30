@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _tokens.cpp                                        :+:      :+:    :+:   */
+/*   tokens.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:47:01 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/05/30 16:48:13 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/30 17:11:06 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_main.hpp"
+#include "parse.hpp"
 
 void openBlock(vector<Servers> &Webserv, vector<string> &elem, int &state)
 {
 	(void)Webserv;
 	if (elem.size() != 1)
 		throw invalid_argument("Configuration error");
-//	cout << "state open block1: " << state << endl;
 	if (state == NEW_SERVER || state == NEW_LOCATION)
 		state++;
 	else

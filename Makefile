@@ -6,7 +6,7 @@
 #    By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/14 01:08:17 by dhaliti           #+#    #+#              #
-#    Updated: 2022/05/30 17:04:16 by dhaliti          ###   ########.fr        #
+#    Updated: 2022/05/30 17:12:29 by dhaliti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ RED			= \033[0;31m
 RST			= \033[0m
 END			= \e[0m
 
-SRCS		= _main.cpp _newServ.cpp _parse.cpp _tokens.cpp _utils.cpp \
-			_newLocation.cpp
+SRCS		= main.cpp newServ.cpp parse.cpp tokens.cpp utils.cpp newLocation.cpp
 NAME		= webserv
 OBJS_DIR	= objs/
 OBJS		= $(SRCS:.cpp=.o)

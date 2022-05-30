@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Servers.hpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 17:10:56 by dhaliti           #+#    #+#             */
+/*   Updated: 2022/05/30 17:10:58 by dhaliti          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 
 
 #include <iostream>
 #include <string>
 #include <vector>
-#include "_main.hpp"
+#include "parse.hpp"
 using namespace std;
 
 typedef struct s_location
