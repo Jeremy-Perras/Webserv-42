@@ -9,10 +9,11 @@ Socket::Socket(int domain, int type, int protocol, int port, char *ip) : _server
 {
     (void) ip;
     this->_address.sin_family = AF_INET;
-    this->_address.sin_addr.s_addr =  INADDR_ANY;
+    this->_address.sin_addr.s_addr =  INADDR_ANY;  // inet_pton(AF_INET, "0.0.0.0", &this->_address.sin_addr);
     this->_address.sin_port = htons(port);
-    // inet_pton(AF_INET, "0.0.0.0", &this->_address.sin_addr);
     bzero(&(this->_address.sin_zero), 8);
+    if(this->_server_fd == -1)
+        throw SocketException();
     return ;
 }
 
@@ -30,6 +31,8 @@ Socket & Socket::operator=(Socket const &rhs)
 {
     if(this == &rhs)
         return(*this);
+    this->_address = rhs._address;
+    this->_server_fd = rhs._server_fd;
     return(*this);
 }
 
@@ -37,6 +40,11 @@ Socket::Socket(Socket const &src)
 {
     *this = src;
     return ;
+}
+
+const char* Socket::SocketException::what() const throw()
+{
+    return("Can't create socket");
 }
 
 Socket::~Socket(void)

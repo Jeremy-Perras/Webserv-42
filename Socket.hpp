@@ -16,6 +16,11 @@ class Socket
         ~Socket(void);
         int getFd(void);
         struct sockaddr_in getAdress(void);
+        class SocketException : public std::exception
+        {
+            public :
+            virtual const char *what() const throw();
+        };
     protected:
         struct sockaddr_in _address;
     private:

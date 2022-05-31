@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <sstream>
 #include <fstream>
+#include <string>
 
 class Msg
 {
@@ -15,9 +16,23 @@ class Msg
         Msg& operator=(Msg const &rhs);
         Msg(Msg const &src);
         ~Msg(void);
-        void Send(int sock);
+        void Send(int sock, char *buf);
         void Recv(int sock);
+        char *getBuf(void);
+        class RecvException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
+        class RecvClientException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
     private:
+        int _bytes_sent;
+        int _bytes_recv;
+        char buf[4096];
 };
 
 #endif

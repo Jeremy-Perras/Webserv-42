@@ -3,21 +3,24 @@
 # include"Socket.hpp"
 # include <sys/types.h>
 # include <sys/socket.h>
+# include <iostream>
 
 
 class Binding : public Socket
 {
     public:
+        Binding(void);
         Binding(int domain, int type, int protocol, int port , char *ip);
         Binding& operator=(Binding const &rhs);
         Binding(Binding const &src);
         ~Binding(void);
-        int connect_network(int sock);
-
+        void connect_network(int sock);
+        class BindException : public std::exception
+        {
+            public:
+            virtual const char* what() const throw();
+        };
     private:
-        // struct sockaddr_in _address;
-
-
 
 };
 

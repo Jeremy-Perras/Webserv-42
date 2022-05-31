@@ -5,6 +5,9 @@
 # include <sys/types.h>
 # include <netinet/in.h>
 #include <iostream>
+#include <netdb.h>
+#include <arpa/inet.h>
+
 
 class Listening
 {
@@ -17,12 +20,19 @@ class Listening
         void listenin(int sock, int backlog);
         void accept(int sock);
         int getNewfd(void);
-
+        class ListenException : public std::exception
+        {
+            public:
+                virtual const char *what() const throw();
+        };
+        class AcceptException : public std::exception
+        {
+            public:
+                virtual const char *what() const throw();
+        };
     private:
-        int _listen;
         int _new_fd;
         struct sockaddr_in _their_addr;
-
 };
 
 
