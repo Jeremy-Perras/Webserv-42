@@ -8,6 +8,7 @@ Socket::Socket(void)
 Socket::Socket(int domain, int type, int protocol, int port, char *ip) : _server_fd(socket(domain, type, 0))
 {
     (void) ip;
+    (void) protocol;
     this->_address.sin_family = AF_INET;
     this->_address.sin_addr.s_addr =  INADDR_ANY;  // inet_pton(AF_INET, "0.0.0.0", &this->_address.sin_addr);
     this->_address.sin_port = htons(port);

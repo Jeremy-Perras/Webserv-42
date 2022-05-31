@@ -7,6 +7,8 @@
 
 int main(void)
 {
+    fd_set copy;
+    (void) copy;
     try
     {
         Listening listen;
@@ -19,13 +21,13 @@ int main(void)
         bind.connect_network(bind.getFd());
         listen.listenin(bind.getFd(), 5);
         listen.accept(bind.getFd());
-        close(bind.getFd());
-        while(true)
-        {
-            Message.Recv(listen.getNewfd());
-            Message.Send(listen.getNewfd(), Message.getBuf());
-        }
-        close(listen.getNewfd());
+        // close(bind.getFd());
+        // while(true)
+        // {
+        //     Message.Recv(listen.getNewfd());
+        //     Message.Send(listen.getNewfd(), Message.getBuf());
+        // }
+        // close(listen.getNewfd());
     }
     catch(std::exception &e)
     {

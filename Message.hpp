@@ -30,7 +30,7 @@ class Msg
                 virtual const char* what() const throw();
         };
     private:
-        int _bytes_sent;
+        //int _bytes_sent;
         int _bytes_recv;
         char buf[4096];
 };
