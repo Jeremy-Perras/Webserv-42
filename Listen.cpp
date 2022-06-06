@@ -17,7 +17,8 @@ Listening & Listening::operator=(Listening const &rhs)
 
 void Listening::listenin(int sock, int backlog)
 {
-    if(listen(sock, backlog) == -1)
+    (void) backlog;
+    if(listen(sock, SOMAXCONN) == -1)
         throw ListenException();
     FD_SET(sock, &this->_master);
     return ;
@@ -26,18 +27,21 @@ void Listening::listenin(int sock, int backlog)
 void Listening::accept(int listening)
 {
     bool running = true;
+    int count=1;
+    int fdmax = listening;
 
 	while (running)
 	{
         fd_set copy = this->_master;
-    	int socketCount = select(0, &copy, nullptr, nullptr, nullptr);
-    	for (int i = 0; i < socketCount; i++)
+    	int socketCount = select(fdmax+1, &copy, nullptr, nullptr, nullptr);
+    	for (int i = 0; i < fdmax; i++)
     	{
     			int sock = copy.fds_bits[i];
     			if (sock == listening)
     			{
     				int client = ::accept(listening, nullptr, nullptr);
     				FD_SET(client, &this->_master);
+                    count++;
     				std::string welcomeMsg = "Welcome to the Awesome Chat Server!\r\n";
     				send(client, welcomeMsg.c_str(), welcomeMsg.size() + 1, 0);
     			}
@@ -63,7 +67,7 @@ void Listening::accept(int listening)
     						}
     						continue;
     					}
-    			        for (int i = 0; i < 31; i++)
+    			        for (int i = 0; i < count; i++)
     					{
     						int outSock = this->_master.fds_bits[i];
     						if (outSock != listening && outSock != sock)
