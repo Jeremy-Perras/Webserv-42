@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 11:33:52 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/05/31 15:01:32 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/06/08 11:50:12 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,19 @@ int main(int ac, char **av)
 		cout << e.what() << endl;
 		exit(0);
 	}
-	cout << "NB SERVEURS: " << Webserv.size() << endl;
-	cout << "NB LOCATIONS: " << Webserv.back()._locations.size() << endl;
-	size_t i = -1;
-	size_t j = -1;
-	while(++i < Webserv.size())
-	{
-		cout << "Webserv[" << i << "]: " << Webserv[i].getPort() << endl;
-		j = -1;
-		while(++j < Webserv[i]._locations.size())
-			cout << Webserv[i]._locations[j].path << endl;
-		cout << endl;;
-	}
+	// cout << "NB SERVEURS: " << Webserv.size() << endl;
+	// cout << "NB LOCATIONS: " << Webserv.back()._locations.size() << endl;
+	// size_t i = -1;
+	// size_t j = -1;
+	// while(++i < Webserv.size())
+	// {
+	// 	cout << "Webserv[" << i << "]: " << Webserv[i].getPort() << endl;
+	// 	j = -1;
+	// 	while(++j < Webserv[i]._locations.size())
+	// 		cout << Webserv[i]._locations[j].path << endl;
+	// 	cout << endl;;
+	// }
+	runServ(Webserv);
 
 //	signal(SIGINT, handleSignals);
 
