@@ -10,10 +10,37 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/time.h> //FD_SET, FD_ISSET, FD_ZERO macros
+#include <fcntl.h>
 
 #define TRUE 1
 #define FALSE 0
 #define PORT 8888
+
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	i;
+	size_t	j;
+	size_t	len1;
+	size_t	len2;
+
+	len1 = strlen(s1);
+	len2 = strlen(s2);
+	str = (char *)malloc(sizeof(char) * len1 + len2 + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		str[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		str[j++] = s2[i++];
+	str[j] = '\0';
+	return (str);
+}
+
 
 int main(int argc , char *argv[])
 {
@@ -80,7 +107,6 @@ int main(int argc , char *argv[])
 	while(TRUE)
 	{
 		//clear the socket set
-		printf("BEGIN\n");
 		FD_ZERO(&readfds);
 
 		//add master socket to set
@@ -160,7 +186,6 @@ int main(int argc , char *argv[])
 				if ((valread = read( sd , buffer, 1024)) == 0)
 				{
 					//Somebody disconnected , get his details and print
-					printf("ISSET\n");
 					getpeername(sd , (struct sockaddr*)&address , \
 						(socklen_t*)&addrlen);
 					printf("Host disconnected , ip %s , port %d \n" ,
@@ -178,8 +203,15 @@ int main(int argc , char *argv[])
 					//of the data read
 					buffer[valread] = '\0';
 					printf("%s\n", buffer);
-					printf("PRINT\n");
-					printf("SEND: %zd\n", send(sd , buffer , strlen(buffer) , 0));
+					char test[100000];
+					int fd = open("test.html", O_RDONLY);
+					printf("%d\n", fd);
+					int val = read(fd, test, 100000);
+					test[val] = 0;
+					char *test2 = ft_strjoin("HTTP/1.x 200 OK\nTransfer-Encoding: chunked\nDate: Sat, 28 Nov 2009\n04:36:25 GMT\nServer: LiteSpeed\nConnection: close\nX-Powered-By: W3 Total Cache/0.8\nPragma: public\nExpires: Sat, 28 Nov 2009 05:36:25 GMT\nEtag:\n\"pub1259380237;gz\"\nCache-Control: max-age=3600, public\nContent-Type: text/html; charset=UTF-8\nLast-Modified: Sat, 28 Nov 2009 03:50:37 GMT\nX-Pingback: https://code.tutsplus.com/xmlrpc.php\nContent-Encoding: gzip\nVary:\nAccept-Encoding, Cookie, User-Agent\n", test);
+					printf("TEST: %s\n", test2);
+					send(sd, test2, strlen(test), 0);
+
 					memset(buffer, 0, strlen(buffer));
 
 				}
